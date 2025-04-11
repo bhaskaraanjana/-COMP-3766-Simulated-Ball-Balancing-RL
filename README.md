@@ -111,33 +111,10 @@ See `requirements.txt` for specific versions. Key libraries include:
     python3 test_ppo.py
     ```
 
-## File Structure (Key Components)
+## Future Work/Areas for contribution
+**Enhanced Observation Space:** Implementing and training with the proposed 8D observation space (adding table joint angles/velocities) could improve policy robustness to initial table tilt, addressing a potential limitation of the current 4D space.
+**Systematic Hyperparameter Optimization:** Employing automated tuning tools (like Optuna or Ray Tune) for the PPO hyperparameters could potentially yield improved performance or faster convergence compared to the iterative manual tuning performed.
+**Reward Function Refinement:** Further experimentation could optimize the reward function, either by fine-tuning the existing centering and action penalty constants or by investigating alternative structures, such as adding penalties for high ball velocity near the center.
+**Advanced Reset Mechanisms:** Exploring the use of ros_control with position controllers could provide a more standard and potentially faster method for resetting joint angles precisely to zero, eliminating the need for physical settling time.
+**Robustness Testing:** Conducting more extensive testing by evaluating the agent's performance across a wider range of initial conditions and its ability to handle simulated external disturbances would provide a more comprehensive assessment of its capabilities.
 
-
-catkin_ws/
-└── src/
-│   ├── table_env_pkg/         # Package for environment, models, training
-│   │   ├── CMakeLists.txt
-│   │   ├── package.xml
-│   │   ├── models/
-│   │   │   ├── tilting_table/
-│   │   │   │   ├── model.config
-│   │   │   │   └── model.sdf     # Table physics definition
-│   │   │   └── rolling_ball/
-│   │   │       ├── model.config
-│   │   │       └── ball.sdf      # Ball physics definition
-│   │   ├── worlds/
-│   │   │   └── balancing_world.world # Gazebo world definition
-│   │   ├── launch/               
-│   │   │   └── start_sim.launch 
-│   │   └── scripts/
-│   │       ├── tilting_table_env.py # Custom Gym Environment
-│   │       ├── train_ppo.py         # Training script
-│   │       └── test_ppo.py          # Testing script
-│   ├── ball_balancer_pkg/     
-│   │   ├── ...
-├── requirements.txt       # (Recommended) Python dependencies
-├──  README.md             
-├── training_logs
-├── trained_models
-└── ... (Other ROS packages)
