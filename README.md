@@ -6,21 +6,21 @@ This project implements a system for balancing a rolling ball on a tilting table
 
 The primary goal is to train an agent that learns to manipulate the table's two rotational joints (`joint_x`, `joint_y`) based on observations of the ball's state (and potentially the table's state) to keep the ball centered on the plate for as long as possible.
 
-This project was developed as the final project for **COMP3766 Introduction to Robotic Manipulation** at Memorial University of Newfoundland, instructed by Dr. Vinicius Prado da Fonseca [cite: 1, COMP3766_Final_Project_Guidelines.pdf].
+This project was developed as the final project for **COMP3766 Introduction to Robotic Manipulation** at Memorial University of Newfoundland, instructed by Dr. Vinicius Prado da Fonseca
 
 ## Features
 
 * **`table_env_pkg`**: The main ROS package containing the environment, models, and scripts.
 * **Gazebo Simulation**: Simulates the tilting table and the rolling ball physics.
     * Models: `tilting_table` and `rolling_ball` define the visual and physical properties.
-    * `universal_joint_controller.cpp`: A custom Gazebo plugin that controls the table's two joints (`joint_x`, `joint_y`) based on effort commands received via a ROS topic (`/tilting_table/tilt_cmd`)[cite: 1058].
+    * `universal_joint_controller.cpp`: A custom Gazebo plugin that controls the table's two joints (`joint_x`, `joint_y`) based on effort commands received via a ROS topic (`/tilting_table/tilt_cmd`).
 * **RL Environment (`tilting_table_env.py`)**: Defines the `gymnasium` environment, including:
-    * **Observation Space**: Relative position (x, y) and velocity (vx, vy) of the ball with respect to the table plate (4 dimensions)[cite: 1]. *Note: An 8-dimensional version (`tilting_table_env(8d obs).py`) also exists, potentially including joint angles and velocities.*
-    * **Action Space**: Continuous effort values for the two table joints (`joint_x`, `joint_y`)[cite: 1].
-    * **Reward Function**: Rewards the agent for keeping the ball near the center of the table and penalizes large actions[cite: 1].
-    * **Episode Termination**: Ends if the ball falls off the table (checked by Z-height or exceeding X/Y boundaries) or reaches the maximum step count[cite: 1].
-* **Training Script (`train_ppo.py`)**: Uses `stable-baselines3` to train a PPO agent within the `TiltingTableEnv`[cite: 2108]. It includes callbacks for saving checkpoints and evaluating the best model.
-* **Testing Script (`test_ppo.py`)**: Loads a pre-trained PPO model and evaluates its performance in the environment[cite: 2112].
+    * **Observation Space**: Relative position (x, y) and velocity (vx, vy) of the ball with respect to the table plate (4 dimensions). *Note: An 8-dimensional version (`tilting_table_env(8d obs).py`) also exists, potentially including joint angles and velocities.*
+    * **Action Space**: Continuous effort values for the two table joints (`joint_x`, `joint_y`).
+    * **Reward Function**: Rewards the agent for keeping the ball near the center of the table and penalizes large actions.
+    * **Episode Termination**: Ends if the ball falls off the table (checked by Z-height or exceeding X/Y boundaries) or reaches the maximum step count.
+* **Training Script (`train_ppo.py`)**: Uses `stable-baselines3` to train a PPO agent within the `TiltingTableEnv`. It includes callbacks for saving checkpoints and evaluating the best model.
+* **Testing Script (`test_ppo.py`)**: Loads a pre-trained PPO model and evaluates its performance in the environment.
 * **Utility Script (`ball_tracker.py`)**: Subscribes to Gazebo model states (`/gazebo/model_states`) to calculate and log the ball's position relative to the table plate.
 * TensorBoard integration for monitoring training progress.
 
