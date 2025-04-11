@@ -1,0 +1,3 @@
+Symlinking /home/beast/catkin_ws/devel/lib/pkgconfig/ball_balancer_pkg.pc
+Symlinking /home/beast/catkin_ws/devel/share/ball_balancer_pkg/cmake/ball_balancer_pkgConfig.cmake
+Symlinking /home/beast/catkin_ws/devel/share/ball_balancer_pkg/cmake/ball_balancer_pkgConfig-version.cmake

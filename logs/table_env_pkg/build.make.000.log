@@ -1,0 +1,6 @@
+[35m[1mScanning dependencies of target table_env_pkg_xacro_generated_to_devel_space_[0m
+[35m[1mScanning dependencies of target universal_joint_controller[0m
+[  0%] Built target table_env_pkg_xacro_generated_to_devel_space_
+[ 50%] [32mBuilding CXX object CMakeFiles/universal_joint_controller.dir/src/universal_joint_controller.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library libuniversal_joint_controller.so[0m
+[100%] Built target universal_joint_controller
